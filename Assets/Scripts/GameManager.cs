@@ -7,51 +7,66 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Transform playerSpawnPoint;
 
-    GameObject player;
-    GameObject enemy;
-
-    Player playerComp;
-    Enemy enemyComp;
+    Player player;
+    Enemy enemy;
 
     BaseCharacter attackingParty;
+
+    public enum AttackState
+    {
+        Ready, Busy
+    }
+
+    public static AttackState attackState = AttackState.Ready;
+
     void Start()
     {
-        player = Instantiate(playerPrefab);
-        player.transform.position = playerSpawnPoint.position - new Vector3(5, 0, 0);
+        GameObject player = Instantiate(playerPrefab, new Vector3(-5, 0, 0), Quaternion.identity);
+        GameObject enemy = Instantiate(enemyPrefab, new Vector3(5, 0, 0), Quaternion.identity);
 
-        enemy = Instantiate(enemyPrefab);
-        enemy.transform.position = playerSpawnPoint.position + new Vector3(5, 0, 0);
+        this.player = player.GetComponent<Player>();
+        this.enemy = enemy.GetComponent<Enemy>();
 
-        playerComp = player.GetComponent<Player>();
-        enemyComp = enemy.GetComponent<Enemy>();
-
-        attackingParty = IsPlayerFirst() ? playerComp : enemyComp;
+        attackingParty = IsPlayerFirst() ? this.player : this.enemy;
     }
 
     // Update is called once per frame
     void Update()
     {
-        PerformAttack();
+        switch (attackState)
+        { 
+            case AttackState.Ready:
+                attackState = AttackState.Busy;
+                PerformAttack();
+                break;
+            case AttackState.Busy:
+                break;
+        }
     }
 
     void PerformAttack()
     {
-        attackingParty.Attack();
+        attackingParty.Attack( IsPlayer() ? enemy : player);
         ChangeAttackingParty();
+    }
+
+    bool IsPlayer()
+    {
+        return attackingParty.gameObject == player.gameObject;
     }
 
     void ChangeAttackingParty()
     {
-        if (attackingParty.gameObject == playerComp.gameObject)
-            attackingParty = enemyComp;
+        if (IsPlayer())
+            attackingParty = enemy;
         else
-            attackingParty = playerComp;
+            attackingParty = player;
     }
 
     bool IsPlayerFirst()
     {
-        var pDex = playerComp.GetStats().Dexterity;
-        var eDex = enemyComp.GetStats().Dexterity;
+        var pDex = player.GetStats().Dexterity;
+        var eDex = enemy.GetStats().Dexterity;
         return pDex > eDex;
     }
 

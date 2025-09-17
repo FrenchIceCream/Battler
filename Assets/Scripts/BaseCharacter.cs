@@ -1,7 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
 public class BaseCharacter : MonoBehaviour, IAttack
 {
+    [SerializeField] float moveSpeed = 1f;
     protected BaseStats stats;
     protected HealthComponent healthComp;
     public BaseStats GetStats()
@@ -32,13 +34,55 @@ public class BaseCharacter : MonoBehaviour, IAttack
             Die();
     }
 
-    virtual public void Attack()
+    public void AddHealth(int value)
     {
-        Debug.Log("Attack");
+        healthComp.AddHealth(value);
+    }
+
+    IEnumerator AttackCoroutine(BaseCharacter opponent)
+    {
+        float moveTime = 0f;
+        Vector3 startPos = this.transform.position;
+        Vector3 targetPos = opponent.transform.position;;
+
+        //reaching the opponent
+        while (Vector3.Distance(transform.position, targetPos) > 1f)
+        {
+            moveTime += Time.deltaTime * moveSpeed;
+            transform.position = Vector3.Lerp(startPos, targetPos, moveTime);
+
+            yield return null;
+        }
+
+        DoDamageToOpponent(opponent);
+        yield return new WaitForSeconds(1f);
+
+        //getting back to where character started
+        targetPos = startPos;
+        startPos = this.transform.position;
+        moveTime = 0f;
+        while (Vector3.Distance(transform.position, targetPos) > 0)
+        {
+            moveTime += Time.deltaTime * moveSpeed;
+            transform.position = Vector3.Lerp(startPos, targetPos, moveTime);
+            yield return null;
+        }
+        GameManager.attackState = GameManager.AttackState.Ready;
+    }
+
+    public void Attack(BaseCharacter opponent)
+    {
+        StartCoroutine(AttackCoroutine(opponent));
+    }
+
+    virtual protected void DoDamageToOpponent(BaseCharacter opponent)
+    {
+        Debug.Log("Attacking (not overriden)");
     }
 
     void Die()
     {
         //TODO
+        Debug.Log("Character died");
     }
 }

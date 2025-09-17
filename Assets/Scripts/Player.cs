@@ -1,16 +1,17 @@
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : BaseCharacter
 {
-    void Awake()
+    override protected void DoDamageToOpponent(BaseCharacter opponent)
     {
-        stats = new BaseStats();
-        stats.SetInitialStats();
-    }
-
-    override public void Attack()
-    {
+        opponent.AddHealth(-2);
         Debug.Log("Attack (player)");
     }
- 
+
+    void ActivateEffects()
+    {
+        //TODO;
+    }
 }
