@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class BaseStats
 { 
-    int health = 0;
-
     int strength = 0;
     int stamina = 0;
     int dexterity = 0;
 
-    public int Health    { get { return health; }    set { health = value; } }
     public int Strength  { get { return strength; }  set { strength = value; } }
     public int Stamina   { get { return stamina; }   set { stamina = value; } }
     public int Dexterity { get { return dexterity; } set { dexterity = value; } }
