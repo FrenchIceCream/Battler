@@ -5,8 +5,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerPrefab;
     [SerializeField] GameObject enemyPrefab;
 
-    [SerializeField] Transform playerSpawnPoint;
-
     Player player;
     Enemy enemy;
 
@@ -14,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public enum AttackState
     {
-        Ready, Busy
+        Ready, Busy, FightFinished
     }
 
     public static AttackState attackState = AttackState.Ready;
@@ -39,7 +37,7 @@ public class GameManager : MonoBehaviour
                 attackState = AttackState.Busy;
                 PerformAttack();
                 break;
-            case AttackState.Busy:
+            default:
                 break;
         }
     }
@@ -65,9 +63,7 @@ public class GameManager : MonoBehaviour
 
     bool IsPlayerFirst()
     {
-        var pDex = player.GetStats().Dexterity;
-        var eDex = enemy.GetStats().Dexterity;
-        return pDex > eDex;
+        return player.GetStats().Dexterity >= enemy.GetStats().Dexterity;
     }
 
 }

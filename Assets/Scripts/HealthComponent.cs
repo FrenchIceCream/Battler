@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class HealthComponent
@@ -35,5 +36,10 @@ public class HealthComponent
             health = 0;
         }
         OnHealthChanged(this, new OnHealthChangedArgs { newHealth = health });
+    }
+
+    public bool IsDead()
+    {
+        return health <= 0;
     }
 }

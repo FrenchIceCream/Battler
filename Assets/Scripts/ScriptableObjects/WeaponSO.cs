@@ -4,14 +4,15 @@ public enum DamageType
 { 
     Slashing,
     Piercing,
-    Bludgeoning
+    Bludgeoning,
+    None
 }
 
 [CreateAssetMenu()]
 public class WeaponSO : ScriptableObject
 {
     public string weaponName;
+    public Sprite weaponSprite;
     public DamageType damageType;
     public int damageAmount;
-    public GameObject weaponPrefab;
 }

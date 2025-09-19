@@ -6,6 +6,7 @@ public class BaseCharacter : MonoBehaviour, IAttack
     [SerializeField] float moveSpeed = 1f;
     protected BaseStats stats;
     protected HealthComponent healthComp;
+
     public BaseStats GetStats()
     {
         return stats;
@@ -18,7 +19,7 @@ public class BaseCharacter : MonoBehaviour, IAttack
         healthComp = new HealthComponent();
     }
 
-    void Start()
+    protected virtual void Start()
     {
         //TODO change value
         healthComp.SetMaxHealth(10);
@@ -67,7 +68,10 @@ public class BaseCharacter : MonoBehaviour, IAttack
             transform.position = Vector3.Lerp(startPos, targetPos, moveTime);
             yield return null;
         }
-        GameManager.attackState = GameManager.AttackState.Ready;
+        if (opponent.healthComp.IsDead())
+            GameManager.attackState = GameManager.AttackState.FightFinished;
+        else
+            GameManager.attackState = GameManager.AttackState.Ready;
     }
 
     public void Attack(BaseCharacter opponent)
@@ -82,7 +86,7 @@ public class BaseCharacter : MonoBehaviour, IAttack
 
     void Die()
     {
-        //TODO
+        
         Debug.Log("Character died");
     }
 }
