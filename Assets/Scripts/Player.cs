@@ -7,7 +7,7 @@ public class Player : BaseCharacter
     [SerializeField] WeaponSO weaponSO;
     [SerializeField] Weapon weapon;
 
-
+    int playerLevel = 0;
 
     //public event EventHandler<OnWeaponUpdatedArgs> OnWeaponUpdated;
     //public class OnWeaponUpdatedArgs : EventArgs
