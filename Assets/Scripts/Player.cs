@@ -1,19 +1,32 @@
+using NUnit.Framework;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class Player : BaseCharacter
 {
     [SerializeField] WeaponSO weaponSO;
     [SerializeField] Weapon weapon;
 
-    int playerLevel = 0;
+    List<AbilitySO> DamageTakenAbilities = new List<AbilitySO>();
+    List<AbilitySO> ApplyingDamageAbilities = new List<AbilitySO>();
 
-    //public event EventHandler<OnWeaponUpdatedArgs> OnWeaponUpdated;
-    //public class OnWeaponUpdatedArgs : EventArgs
-    //{
-    //    public WeaponSO weaponSO;
-    //}
+    //This function adds buffs that player uses when they're being attacked
+    public void AddDamageTakenAbilities(AbilitySO abilitySO)
+    {
+        DamageTakenAbilities.Add(abilitySO);
+    }
+
+    //This function adds buffs that player uses when they're attacking the enemy
+    public void AddApplyingDamageAbilities(AbilitySO abilitySO)
+    {
+        ApplyingDamageAbilities.Add(abilitySO);
+    }
+
+    public WeaponSO GetWeaponSO() { return weaponSO; }
+
+    int playerLevel = 0;
 
     override protected void Start()
     {
@@ -23,19 +36,19 @@ public class Player : BaseCharacter
         weapon.SetWeapon(weaponSO);
     }
 
-    int GetOverallDamage()
+    int GetOverallDamage(BaseCharacter opponent)
     {
-        return stats.Strength + weapon.GetDamage();
+        int damageFromAbilities = 0;
+        foreach (AbilitySO abilitySO in ApplyingDamageAbilities)
+        {
+            damageFromAbilities += abilitySO.Apply();
+        }
+        return weapon.GetDamage() + stats.Strength + damageFromAbilities;
     }
 
     override protected void DoDamageToOpponent(BaseCharacter opponent)
     {
-        opponent.AddHealth(-GetOverallDamage());
+        opponent.AddHealth(-GetOverallDamage(opponent));
         Debug.Log("Attack (player)");
-    }
-
-    void ActivateEffects()
-    {
-        //TODO;
     }
 }

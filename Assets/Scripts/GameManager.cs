@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     }
 
     public static AttackState attackState = AttackState.Ready;
+    public static int roundNumber = 1;
 
     void Start()
     {
@@ -58,7 +59,11 @@ public class GameManager : MonoBehaviour
         if (IsPlayer())
             attackingParty = enemy;
         else
+        {
+            roundNumber++;
             attackingParty = player;
+        }
+            
     }
 
     bool IsPlayerFirst()
