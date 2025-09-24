@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c011fbf3195d0e94fa979e3ac4740a27, type: 3}
   m_Name: Rogue
   m_EditorClassIdentifier: 
-  healthForLevel: 0
-  defaultWeapon: {fileID: 0}
+  healthForLevel: 4
+  defaultWeapon: {fileID: 11400000, guid: 2a04e8bf7d4ad7d41a44949f07711098, type: 2}
   abilities:
   - {fileID: 11400000, guid: 01c32130a623e3c45a44b7c3fb35bb61, type: 2}
   - {fileID: 11400000, guid: 76052a0497d167947b85b4a10747da28, type: 2}

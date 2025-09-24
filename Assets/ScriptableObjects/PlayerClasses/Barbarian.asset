@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c011fbf3195d0e94fa979e3ac4740a27, type: 3}
   m_Name: Barbarian
   m_EditorClassIdentifier: 
-  healthForLevel: 0
-  defaultWeapon: {fileID: 0}
+  healthForLevel: 6
+  defaultWeapon: {fileID: 11400000, guid: daedb4b54d02cd943ab4758c0cdbac2a, type: 2}
   abilities:
   - {fileID: 11400000, guid: d8500f06f3fb5de48b252da45946aa56, type: 2}
   - {fileID: 11400000, guid: eeeaed4b7ddbaf144946d19e9bf3cd51, type: 2}

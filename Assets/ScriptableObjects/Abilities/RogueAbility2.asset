@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: RogueAbility2
   m_EditorClassIdentifier: Assembly-CSharp::RogueAbility2
-  abilityName: 
+  abilityName: "\u041B\u043E\u0432\u043A\u043E\u0441\u0442\u044C +1 "
   abilityDescription: 

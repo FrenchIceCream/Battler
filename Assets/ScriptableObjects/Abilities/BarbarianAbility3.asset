@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: BarbarianAbility3
   m_EditorClassIdentifier: Assembly-CSharp::BarbarianAbility3
-  abilityName: 
+  abilityName: "\u0412\u044B\u043D\u043E\u0441\u043B\u0438\u0432\u043E\u0441\u0442\u044C
+    +1"
   abilityDescription: 
