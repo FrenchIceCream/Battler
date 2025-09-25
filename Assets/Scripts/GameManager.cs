@@ -1,9 +1,11 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] GameObject enemyPrefab;
+    [SerializeField] List<EnemySO> enemiesList;
 
     Player player;
     Enemy enemy;
@@ -21,7 +23,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GameObject player = Instantiate(playerPrefab, new Vector3(-5, 0, 0), Quaternion.identity);
-        GameObject enemy = Instantiate(enemyPrefab, new Vector3(5, 0, 0), Quaternion.identity);
+        int id = Random.Range(0, enemiesList.Count);
+        GameObject enemy = Instantiate(enemiesList[id].enemyPrefab, new Vector3(5, 0, 0), Quaternion.identity);
 
         this.player = player.GetComponent<Player>();
         this.enemy = enemy.GetComponent<Enemy>();

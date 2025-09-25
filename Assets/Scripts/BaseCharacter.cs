@@ -27,7 +27,7 @@ public class BaseCharacter : MonoBehaviour, IAttack
         healthComp.OnHealthChanged += HealthComp_OnHealthChanged;
     }
 
-    private void HealthComp_OnHealthChanged(object sender, HealthComponent.OnHealthChangedArgs e)
+    protected void HealthComp_OnHealthChanged(object sender, HealthComponent.OnHealthChangedArgs e)
     {
         //TODO visual updates
 

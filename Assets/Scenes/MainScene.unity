@@ -301,8 +301,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7832772720383596869, guid: 648160225b73534438e5517c6c12802e, type: 3}
-  enemyPrefab: {fileID: 6146987936500731819, guid: 13b1589492d43434ebfb8f8acf7dad96, type: 3}
-  playerSpawnPoint: {fileID: 1738999241}
+  enemiesList:
+  - {fileID: 11400000, guid: a3754507b2b172f4592aa55332b57f90, type: 2}
+  - {fileID: 11400000, guid: 23830f7ede97706449e9551be2922091, type: 2}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
