@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu()]
 public class EnemySO : ScriptableObject
@@ -9,6 +11,6 @@ public class EnemySO : ScriptableObject
     public int strength;
     public int dexterity;
     public int stamina;
-    //TODO add abilities
+    public List<AbilitySO> abilities;
     public WeaponSO weaponAward;
 }

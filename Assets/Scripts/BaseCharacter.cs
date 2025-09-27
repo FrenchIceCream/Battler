@@ -1,11 +1,28 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BaseCharacter : MonoBehaviour, IAttack
 {
     [SerializeField] float moveSpeed = 1f;
     protected BaseStats stats;
     protected HealthComponent healthComp;
+
+    protected List<AbilitySO> DamageTakenAbilities = new List<AbilitySO>();
+    protected List<AbilitySO> ApplyingDamageAbilities = new List<AbilitySO>();
+
+    //This function adds buffs that player uses when they're being attacked
+    public void AddDamageTakenAbilities(AbilitySO abilitySO)
+    {
+        DamageTakenAbilities.Add(abilitySO);
+    }
+
+    //This function adds buffs that player uses when they're attacking the enemy
+    public void AddApplyingDamageAbilities(AbilitySO abilitySO)
+    {
+        ApplyingDamageAbilities.Add(abilitySO);
+    }
+
 
     public BaseStats GetStats()
     {
@@ -37,7 +54,13 @@ public class BaseCharacter : MonoBehaviour, IAttack
 
     public void AddHealth(int value)
     {
-        healthComp.AddHealth(value);
+        int damageFromAbilities = 0;
+        foreach (AbilitySO abilitySO in DamageTakenAbilities)
+        {
+            damageFromAbilities += abilitySO.Apply();
+        }
+
+        healthComp.AddHealth(value + damageFromAbilities);
     }
 
     IEnumerator AttackCoroutine(BaseCharacter opponent)

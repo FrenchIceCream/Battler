@@ -7,5 +7,5 @@ public class CharacterClassSO : ScriptableObject
 {
     public int healthForLevel;
     public WeaponSO defaultWeapon;
-    [SerializeReference] public List<AbilitySO> abilities;// = new List<AbilitySO>();
+    [SerializeReference] public List<AbilitySO> abilities;
 }

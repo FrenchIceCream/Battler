@@ -9,21 +9,6 @@ public class Player : BaseCharacter
     [SerializeField] WeaponSO weaponSO;
     [SerializeField] Weapon weapon;
 
-    List<AbilitySO> DamageTakenAbilities = new List<AbilitySO>();
-    List<AbilitySO> ApplyingDamageAbilities = new List<AbilitySO>();
-
-    //This function adds buffs that player uses when they're being attacked
-    public void AddDamageTakenAbilities(AbilitySO abilitySO)
-    {
-        DamageTakenAbilities.Add(abilitySO);
-    }
-
-    //This function adds buffs that player uses when they're attacking the enemy
-    public void AddApplyingDamageAbilities(AbilitySO abilitySO)
-    {
-        ApplyingDamageAbilities.Add(abilitySO);
-    }
-
     public WeaponSO GetWeaponSO() { return weaponSO; }
 
     int playerLevel = 0;
