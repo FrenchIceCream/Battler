@@ -29,18 +29,14 @@ public class BaseCharacter : MonoBehaviour, IAttack
         return stats;
     }
 
-    void Awake()
+    protected virtual void Awake()
     {
         stats = new BaseStats();
-        stats.SetInitialStats();
         healthComp = new HealthComponent();
     }
 
     protected virtual void Start()
     {
-        //TODO change value
-        healthComp.SetMaxHealth(10);
-
         healthComp.OnHealthChanged += HealthComp_OnHealthChanged;
     }
 
@@ -92,7 +88,7 @@ public class BaseCharacter : MonoBehaviour, IAttack
             yield return null;
         }
         if (opponent.healthComp.IsDead())
-            GameManager.attackState = GameManager.AttackState.FightFinished;
+            GameManager.attackState = GameManager.AttackState.Paused;
         else
             GameManager.attackState = GameManager.AttackState.Ready;
     }

@@ -113,7 +113,7 @@ public class BarbarianAbility1 : AbilitySO
 
     public override int Apply(Player player = null, Enemy enemy = null)
     {
-        return GameManager.roundNumber >= 3 ? 3 : -1;
+        return GameManager.roundNumber < 3 ? 3 : -1;
     }
 }
 
@@ -144,7 +144,7 @@ public class BarbarianAbility3 : AbilitySO
 
 //==============================ENEMIES==============================
 
-[CreateAssetMenu(fileName = "SkeletonAbility", menuName = "AbilitySO/Skeleton")]
+//[CreateAssetMenu(fileName = "SkeletonAbility", menuName = "AbilitySO/Skeleton")]
 public class SkeletonAbility : AbilitySO
 {
     public override void ActivateAbility(BaseCharacter character)
@@ -160,7 +160,7 @@ public class SkeletonAbility : AbilitySO
     }
 }
 
-[CreateAssetMenu(fileName = "SlimeAbility", menuName = "AbilitySO/Slime")]
+//[CreateAssetMenu(fileName = "SlimeAbility", menuName = "AbilitySO/Slime")]
 public class SlimeAbility : AbilitySO
 {
     public override void ActivateAbility(BaseCharacter character)
@@ -176,7 +176,7 @@ public class SlimeAbility : AbilitySO
     }
 }
 
-[CreateAssetMenu(fileName = "GhostAbility", menuName = "AbilitySO/Ghost")]
+//[CreateAssetMenu(fileName = "GhostAbility", menuName = "AbilitySO/Ghost")]
 public class GhostAbility : AbilitySO
 {
     public override void ActivateAbility(BaseCharacter character)
@@ -190,7 +190,7 @@ public class GhostAbility : AbilitySO
     }
 }
 
-[CreateAssetMenu(fileName = "GolemAbility", menuName = "AbilitySO/Golem")]
+//[CreateAssetMenu(fileName = "GolemAbility", menuName = "AbilitySO/Golem")]
 public class GolemAbility : AbilitySO
 {
     public override void ActivateAbility(BaseCharacter character)
@@ -204,7 +204,7 @@ public class GolemAbility : AbilitySO
     }
 }
 
-[CreateAssetMenu(fileName = "DragonAbility", menuName = "AbilitySO/Dragon")]
+//[CreateAssetMenu(fileName = "DragonAbility", menuName = "AbilitySO/Dragon")]
 public class DragonAbility : AbilitySO
 {
     public override void ActivateAbility(BaseCharacter character)

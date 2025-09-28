@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour
 
     public enum AttackState
     {
-        Ready, Busy, FightFinished
+        Ready, Busy, Paused
     }
 
-    public static AttackState attackState = AttackState.Ready;
+    public static AttackState attackState = AttackState.Paused;
     public static int roundNumber = 1;
 
     void Start()

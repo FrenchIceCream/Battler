@@ -24,6 +24,8 @@ public class HealthComponent
         }
     }
 
+    public int GetMaxHealth() { return maxHealth; }
+
     public void AddHealth(int value)
     {
         health += value;

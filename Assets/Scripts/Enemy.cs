@@ -4,10 +4,9 @@ public class Enemy : BaseCharacter
 {
     [SerializeField] EnemySO enemySO;
 
-    private void Awake()
+    protected override void Awake()
     {
-        healthComp = new HealthComponent();
-        stats = new BaseStats();
+        base.Awake();
         GetStats().Dexterity = enemySO.dexterity;
         GetStats().Strength = enemySO.strength;
         GetStats().Stamina = enemySO.stamina;
@@ -27,7 +26,7 @@ public class Enemy : BaseCharacter
         int damageFromAbilities = 0;
         foreach (AbilitySO abilitySO in ApplyingDamageAbilities)
         {
-            damageFromAbilities += abilitySO.Apply();
+            damageFromAbilities += abilitySO.Apply(opponent as Player, this);
         }
         return enemySO.damage + stats.Strength + damageFromAbilities;
     }

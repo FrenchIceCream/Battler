@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c011fbf3195d0e94fa979e3ac4740a27, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
+  className: "\u0412\u043E\u0438\u043D"
   healthForLevel: 5
   defaultWeapon: {fileID: 11400000, guid: f2695540423442a468a8f21a752b3662, type: 2}
   abilities:

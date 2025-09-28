@@ -3,24 +3,22 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] SpriteRenderer weaponSpriteRenderer;
-    int damageAmount;
-    DamageType damageType;
-
+    WeaponSO weaponSO;
     public void SetWeapon(WeaponSO weaponSO)
     {
         weaponSpriteRenderer.sprite = weaponSO.weaponSprite;
-        damageAmount = weaponSO.damageAmount;
-        damageType = weaponSO.damageType;
+        this.weaponSO = weaponSO;
     }
 
     public void ClearWeapon()
     {
         weaponSpriteRenderer.sprite = null;
-        damageType = DamageType.None;
-        damageAmount = 0;
+        weaponSO = null;
     }
 
-    public int GetDamage() { return damageAmount; }
+    public WeaponSO GetWeaponSO() { return weaponSO; }
 
-    public DamageType GetDamageType() { return damageType; }
+    public int GetDamage() { return weaponSO.damageAmount; }
+
+    public DamageType GetDamageType() { return weaponSO.damageType; }
 }

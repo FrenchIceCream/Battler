@@ -6,19 +6,37 @@ using System.Collections.Generic;
 
 public class Player : BaseCharacter
 {
-    [SerializeField] WeaponSO weaponSO;
     [SerializeField] Weapon weapon;
 
-    public WeaponSO GetWeaponSO() { return weaponSO; }
+    public static Player Instance { get; private set; }
+
+    [SerializeField] List<CharacterClassSO> possibleCharacterClasses;
+    Dictionary<string, int> characterClasses;
+
+    public List<CharacterClassSO> GetPossibleCharacterClasses() { return possibleCharacterClasses; }    
+    public WeaponSO GetWeaponSO() { return weapon.GetWeaponSO(); }
 
     int playerLevel = 0;
+
+    override protected void Awake()
+    {
+        base.Awake();
+        stats.SetInitialStats();
+
+        characterClasses = new Dictionary<string, int>();
+
+        if (Instance == null)
+            Instance = this;
+
+        foreach (CharacterClassSO charClass in possibleCharacterClasses)
+        {
+            characterClasses.Add(charClass.name, 0);
+        }
+    }
 
     override protected void Start()
     {
         base.Start();
-
-        //TODO set from outside
-        weapon.SetWeapon(weaponSO);
     }
 
     int GetOverallDamage(BaseCharacter opponent)
@@ -26,8 +44,10 @@ public class Player : BaseCharacter
         int damageFromAbilities = 0;
         foreach (AbilitySO abilitySO in ApplyingDamageAbilities)
         {
-            damageFromAbilities += abilitySO.Apply();
+            damageFromAbilities += abilitySO.Apply(this, opponent as Enemy);
+            Debug.Log(damageFromAbilities);
         }
+        Debug.Log(weapon.GetDamage() + stats.Strength + damageFromAbilities);
         return weapon.GetDamage() + stats.Strength + damageFromAbilities;
     }
 
@@ -35,5 +55,27 @@ public class Player : BaseCharacter
     {
         opponent.AddHealth(-GetOverallDamage(opponent));
         Debug.Log("Attack (player)");
+    }
+
+    public void AddCharacterClass(CharacterClassSO characterClassSO)
+    {
+        if (playerLevel == 0)
+        {
+            characterClasses.Add(characterClassSO.className, 1);
+            weapon.SetWeapon(characterClassSO.defaultWeapon);
+        }
+        else
+        {
+            if (characterClasses.ContainsKey(characterClassSO.className))
+                characterClasses[characterClassSO.className]++;
+            else
+                characterClasses.Add(characterClassSO.className, 1);
+        }
+
+        healthComp.SetMaxHealth(healthComp.GetMaxHealth() + characterClassSO.healthForLevel);
+        int value = characterClasses[characterClassSO.className];
+        characterClassSO.abilities[value - 1].ActivateAbility(this);
+
+        playerLevel++;
     }
 }

@@ -18,4 +18,6 @@ MonoBehaviour:
   strength: 3
   dexterity: 1
   stamina: 3
+  abilities:
+  - {fileID: 11400000, guid: 349846c11e155b54f97337f8581c7ff4, type: 2}
   weaponAward: {fileID: 11400000, guid: c1ade5beb8a581042b479c317c1efcb6, type: 2}

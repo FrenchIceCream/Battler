@@ -149,6 +149,10 @@ MonoBehaviour:
   moveSpeed: 1
   weaponSO: {fileID: 11400000, guid: c1ade5beb8a581042b479c317c1efcb6, type: 2}
   weapon: {fileID: 7562550913820153540}
+  possibleCharacterClasses:
+  - {fileID: 11400000, guid: 24f6cff7366374f45a4d402c6ad348ca, type: 2}
+  - {fileID: 11400000, guid: 5b873850a14b3d94f9c60e9179e255ba, type: 2}
+  - {fileID: 11400000, guid: 56340b0f5bf8162498838325f44dde9d, type: 2}
 --- !u!1 &8324839101398283658
 GameObject:
   m_ObjectHideFlags: 0
