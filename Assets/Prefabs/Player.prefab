@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  weaponSO: {fileID: 11400000, guid: c1ade5beb8a581042b479c317c1efcb6, type: 2}
   weapon: {fileID: 7562550913820153540}
   possibleCharacterClasses:
   - {fileID: 11400000, guid: 24f6cff7366374f45a4d402c6ad348ca, type: 2}

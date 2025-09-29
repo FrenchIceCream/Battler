@@ -15,8 +15,13 @@ public class Player : BaseCharacter
 
     public List<CharacterClassSO> GetPossibleCharacterClasses() { return possibleCharacterClasses; }    
     public WeaponSO GetWeaponSO() { return weapon.GetWeaponSO(); }
+    public void SetWeapon(WeaponSO weaponSO)
+    {
+        weapon.SetWeapon(weaponSO);
+    }
 
     int playerLevel = 0;
+    public int GetPlayerLevel() { return playerLevel; }
 
     override protected void Awake()
     {
@@ -53,8 +58,18 @@ public class Player : BaseCharacter
 
     override protected void DoDamageToOpponent(BaseCharacter opponent)
     {
-        opponent.AddHealth(-GetOverallDamage(opponent));
+        opponent.AddHealth(-GetOverallDamage(opponent) + GetDamageTakenFromOpponent(opponent));
         Debug.Log("Attack (player)");
+    }
+
+    int GetDamageTakenFromOpponent(BaseCharacter opponent)
+    {
+        int damageFromAbilities = 0;
+        foreach (AbilitySO abilitySO in DamageTakenAbilities)
+        {
+            damageFromAbilities += abilitySO.Apply(this, opponent as Enemy);
+        }
+        return damageFromAbilities;
     }
 
     public void AddCharacterClass(CharacterClassSO characterClassSO)

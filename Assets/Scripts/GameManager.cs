@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab;
     [SerializeField] List<EnemySO> enemiesList;
+    [SerializeField] WeaponSelectionUI weaponSelectionUI;
+    [SerializeField] ClassSelectionUI classSelectionUI;
+
 
     Player player;
     Enemy enemy;
@@ -14,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     public enum AttackState
     {
-        Ready, Busy, Paused
+        Ready, Busy, Paused, FightFinished
     }
 
     public static AttackState attackState = AttackState.Paused;
@@ -29,7 +32,21 @@ public class GameManager : MonoBehaviour
         this.player = player.GetComponent<Player>();
         this.enemy = enemy.GetComponent<Enemy>();
 
+        this.player.OnCharacterDied += Player_OnCharacterDied; ;
+        this.enemy.OnCharacterDied += Enemy_OnCharacterDied;
+
         attackingParty = IsPlayerFirst() ? this.player : this.enemy;
+    }
+
+    private void Enemy_OnCharacterDied(object sender, System.EventArgs e)
+    {
+        weaponSelectionUI.SetWeaponOnCards(player.GetWeaponSO(), enemy.GetEnemySO().weaponAward);
+        weaponSelectionUI.Show();
+    }
+
+    private void Player_OnCharacterDied(object sender, System.EventArgs e)
+    {
+        Debug.Log("You're dead");
     }
 
     // Update is called once per frame
@@ -41,6 +58,10 @@ public class GameManager : MonoBehaviour
                 attackState = AttackState.Busy;
                 PerformAttack();
                 break;
+            //case AttackState.FightFinished:
+                
+            //    attackState = AttackState.Paused;
+            //    break;
             default:
                 break;
         }

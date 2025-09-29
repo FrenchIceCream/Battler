@@ -4,6 +4,8 @@ public class Enemy : BaseCharacter
 {
     [SerializeField] EnemySO enemySO;
 
+    public EnemySO GetEnemySO() { return enemySO; }
+
     protected override void Awake()
     {
         base.Awake();
@@ -31,10 +33,20 @@ public class Enemy : BaseCharacter
         return enemySO.damage + stats.Strength + damageFromAbilities;
     }
 
-    override protected void DoDamageToOpponent(BaseCharacter opponent)
+    int GetDamageTakenFromOpponent(BaseCharacter opponent)
     {
 
-        opponent.AddHealth(-GetOverallDamage(opponent));
+        int damageFromAbilities = 0;
+        foreach (AbilitySO abilitySO in DamageTakenAbilities)
+        {
+            damageFromAbilities += abilitySO.Apply(opponent as Player, this);
+        }
+        return damageFromAbilities;
+    }
+
+    override protected void DoDamageToOpponent(BaseCharacter opponent)
+    {
+        opponent.AddHealth(-GetOverallDamage(opponent) + GetDamageTakenFromOpponent(opponent));
         Debug.Log("Attack (enemy)");
     }
 }

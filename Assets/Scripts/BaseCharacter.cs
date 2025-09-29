@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using System;
 
 public class BaseCharacter : MonoBehaviour, IAttack
 {
@@ -10,6 +12,8 @@ public class BaseCharacter : MonoBehaviour, IAttack
 
     protected List<AbilitySO> DamageTakenAbilities = new List<AbilitySO>();
     protected List<AbilitySO> ApplyingDamageAbilities = new List<AbilitySO>();
+
+    public event EventHandler OnCharacterDied;
 
     //This function adds buffs that player uses when they're being attacked
     public void AddDamageTakenAbilities(AbilitySO abilitySO)
@@ -50,13 +54,7 @@ public class BaseCharacter : MonoBehaviour, IAttack
 
     public void AddHealth(int value)
     {
-        int damageFromAbilities = 0;
-        foreach (AbilitySO abilitySO in DamageTakenAbilities)
-        {
-            damageFromAbilities += abilitySO.Apply();
-        }
-
-        healthComp.AddHealth(value + damageFromAbilities);
+        healthComp.AddHealth(value);
     }
 
     IEnumerator AttackCoroutine(BaseCharacter opponent)
@@ -87,9 +85,8 @@ public class BaseCharacter : MonoBehaviour, IAttack
             transform.position = Vector3.Lerp(startPos, targetPos, moveTime);
             yield return null;
         }
-        if (opponent.healthComp.IsDead())
-            GameManager.attackState = GameManager.AttackState.Paused;
-        else
+        
+        if (!opponent.healthComp.IsDead())
             GameManager.attackState = GameManager.AttackState.Ready;
     }
 
@@ -105,7 +102,9 @@ public class BaseCharacter : MonoBehaviour, IAttack
 
     void Die()
     {
-        
-        Debug.Log("Character died");
+        OnCharacterDied?.Invoke(this, EventArgs.Empty);
+        StopAllCoroutines();
+
+        GameManager.attackState = GameManager.AttackState.FightFinished;
     }
 }
