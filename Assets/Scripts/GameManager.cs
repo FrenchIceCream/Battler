@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] ClassSelectionUI classSelectionUI;
     [SerializeField] GameObject deathScreenObject;
 
-    bool readyForNewBattle;
+    bool readyForNewBattle = false;
     Player player;
     Enemy enemy;
 
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         this.player = player.GetComponent<Player>();
         this.enemy = enemy.GetComponent<Enemy>();
 
-        this.player.OnCharacterDied += Player_OnCharacterDied; ;
+        this.player.OnCharacterDied += Player_OnCharacterDied;
         this.enemy.OnCharacterDied += Enemy_OnCharacterDied;
 
         attackingParty = IsPlayerFirst() ? this.player : this.enemy;
@@ -90,8 +90,7 @@ public class GameManager : MonoBehaviour
         {
             roundNumber++;
             attackingParty = player;
-        }
-            
+        }    
     }
 
     void StartNewBattle()
@@ -106,6 +105,7 @@ public class GameManager : MonoBehaviour
             ResetBattle();
             attackState = AttackState.Ready;
         }
+        readyForNewBattle = false;
     }
 
     void ResetBattle()
