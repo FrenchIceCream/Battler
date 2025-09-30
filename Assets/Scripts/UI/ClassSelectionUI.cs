@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,11 +21,17 @@ public class ClassSelectionUI : MonoBehaviour
                 Destroy(child.gameObject);
         }
 
+        Dictionary<string, int> classesDict = Player.Instance.GetClassNamesAndLevels();
+
         foreach (CharacterClassSO characterClassSO in Player.Instance.GetPossibleCharacterClasses())
         {
             GameObject spawnedItem = Instantiate(classPanelSingle, this.transform);
             ClassPanelSingleUI classPanelSingleUI = spawnedItem.GetComponent<ClassPanelSingleUI>();
-            classPanelSingleUI.SetFromCharacterClassSO(characterClassSO);
+            if (classesDict.ContainsKey(characterClassSO.className))
+                classPanelSingleUI.SetFromCharacterClassSO(characterClassSO, classesDict[characterClassSO.className] + 1);
+            else
+                classPanelSingleUI.SetFromCharacterClassSO(characterClassSO);
+
 
             classPanelSingleUI.chooseButton.onClick.AddListener(() => {
                 Player.Instance.AddCharacterClass(characterClassSO);

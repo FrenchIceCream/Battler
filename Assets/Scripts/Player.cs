@@ -13,7 +13,9 @@ public class Player : BaseCharacter
     [SerializeField] List<CharacterClassSO> possibleCharacterClasses;
     Dictionary<string, int> characterClasses;
 
-    public List<CharacterClassSO> GetPossibleCharacterClasses() { return possibleCharacterClasses; }    
+    public List<CharacterClassSO> GetPossibleCharacterClasses() { return possibleCharacterClasses; }
+    public Dictionary<string, int> GetClassNamesAndLevels() { return characterClasses; }
+    
     public WeaponSO GetWeaponSO() { return weapon.GetWeaponSO(); }
     public void SetWeapon(WeaponSO weaponSO)    { weapon.SetWeapon(weaponSO); }
     public void ResetHealth()   { healthComp.ResetHealth(); }
