@@ -40,6 +40,12 @@ public class HealthComponent
         OnHealthChanged(this, new OnHealthChangedArgs { newHealth = health });
     }
 
+    public void ResetHealth()
+    {
+        health = maxHealth;
+    }
+
+
     public bool IsDead()
     {
         return health <= 0;

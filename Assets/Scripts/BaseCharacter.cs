@@ -85,9 +85,11 @@ public class BaseCharacter : MonoBehaviour, IAttack
             transform.position = Vector3.Lerp(startPos, targetPos, moveTime);
             yield return null;
         }
-        
+
         if (!opponent.healthComp.IsDead())
             GameManager.attackState = GameManager.AttackState.Ready;
+        else
+            GameManager.attackState = GameManager.AttackState.FightFinished;
     }
 
     public void Attack(BaseCharacter opponent)
@@ -105,6 +107,6 @@ public class BaseCharacter : MonoBehaviour, IAttack
         OnCharacterDied?.Invoke(this, EventArgs.Empty);
         StopAllCoroutines();
 
-        GameManager.attackState = GameManager.AttackState.FightFinished;
+        GameManager.attackState = GameManager.AttackState.Paused;
     }
 }

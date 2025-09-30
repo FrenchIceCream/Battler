@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ClassSelectionUI : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class ClassSelectionUI : MonoBehaviour
         SetCharacterClasses();
     }
 
-    public void SetCharacterClasses()
+    public void SetCharacterClasses(UnityAction action = null)
     {
         foreach (Transform child in transform)
         {
@@ -28,6 +30,7 @@ public class ClassSelectionUI : MonoBehaviour
                 Player.Instance.AddCharacterClass(characterClassSO);
                 Hide();
                 GameManager.attackState = GameManager.AttackState.Ready;
+                action?.Invoke();
             });
 
             spawnedItem.SetActive(true);

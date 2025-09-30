@@ -16,15 +16,6 @@ public class WeaponSelectionUI : MonoBehaviour
         newWeaponSingleUI.chooseButton.onClick.AddListener(() => { 
             Player.Instance.SetWeapon(newWeaponSO); 
             Hide();
-            if (Player.Instance.GetPlayerLevel() < 3)
-            {
-                classSelectionUI.SetCharacterClasses();
-                classSelectionUI.Show();
-            }
-            else
-            {
-                GameManager.attackState = GameManager.AttackState.Ready;
-            }
         });
     }
 

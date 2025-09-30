@@ -47,6 +47,5 @@ public class Enemy : BaseCharacter
     override protected void DoDamageToOpponent(BaseCharacter opponent)
     {
         opponent.AddHealth(-GetOverallDamage(opponent) + GetDamageTakenFromOpponent(opponent));
-        Debug.Log("Attack (enemy)");
     }
 }

@@ -15,10 +15,9 @@ public class Player : BaseCharacter
 
     public List<CharacterClassSO> GetPossibleCharacterClasses() { return possibleCharacterClasses; }    
     public WeaponSO GetWeaponSO() { return weapon.GetWeaponSO(); }
-    public void SetWeapon(WeaponSO weaponSO)
-    {
-        weapon.SetWeapon(weaponSO);
-    }
+    public void SetWeapon(WeaponSO weaponSO)    { weapon.SetWeapon(weaponSO); }
+    public void ResetHealth()   { healthComp.ResetHealth(); }
+
 
     int playerLevel = 0;
     public int GetPlayerLevel() { return playerLevel; }
@@ -50,16 +49,13 @@ public class Player : BaseCharacter
         foreach (AbilitySO abilitySO in ApplyingDamageAbilities)
         {
             damageFromAbilities += abilitySO.Apply(this, opponent as Enemy);
-            Debug.Log(damageFromAbilities);
         }
-        Debug.Log(weapon.GetDamage() + stats.Strength + damageFromAbilities);
         return weapon.GetDamage() + stats.Strength + damageFromAbilities;
     }
 
     override protected void DoDamageToOpponent(BaseCharacter opponent)
     {
         opponent.AddHealth(-GetOverallDamage(opponent) + GetDamageTakenFromOpponent(opponent));
-        Debug.Log("Attack (player)");
     }
 
     int GetDamageTakenFromOpponent(BaseCharacter opponent)
