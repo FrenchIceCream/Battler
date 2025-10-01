@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Club
   m_EditorClassIdentifier: 
   weaponName: "\u0414\u0443\u0431\u0438\u043D\u0430"
+  weaponSprite: {fileID: 21300000, guid: e1ae51b1e8e1fe24ca6449b1f314435a, type: 3}
   damageType: 2
   damageAmount: 3
-  weaponPrefab: {fileID: 0}

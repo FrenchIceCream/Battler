@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   weaponName: "\u041C\u0435\u0447"
+  weaponSprite: {fileID: 21300000, guid: 1b66ba681275c2446838d80ffadf2444, type: 3}
   damageType: 0
   damageAmount: 3
-  weaponPrefab: {fileID: 0}

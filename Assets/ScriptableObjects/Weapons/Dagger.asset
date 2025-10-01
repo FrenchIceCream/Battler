@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dagger
   m_EditorClassIdentifier: 
   weaponName: "\u041A\u0438\u043D\u0436\u0430\u043B"
+  weaponSprite: {fileID: 21300000, guid: ab195392089b3424888e8a94263d59f3, type: 3}
   damageType: 1
   damageAmount: 2
-  weaponPrefab: {fileID: 0}
