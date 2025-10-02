@@ -6,6 +6,7 @@ public class WeaponSelectionSingleUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI damageText;
     [SerializeField] Image weaponSprite;
+    [SerializeField] TextMeshProUGUI weaponNameText;
     public Button chooseButton;
 
 
@@ -13,5 +14,6 @@ public class WeaponSelectionSingleUI : MonoBehaviour
     {
         damageText.text = $"Урон: {weaponSO.damageAmount}";
         weaponSprite.sprite = weaponSO.weaponSprite;
+        weaponNameText.text = weaponSO.weaponName;
     }
 }
