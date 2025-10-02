@@ -143,14 +143,4 @@ public class GameManager : MonoBehaviour
     {
         readyForNewBattle = true;
     }
-
-    public void RestartLevel(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    public void Quit()
-    { 
-        Application.Quit();
-    }
 }
