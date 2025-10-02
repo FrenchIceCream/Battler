@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1463813107589881321, guid: c5364f6f78ea7a34b8b8a49c415d6595, type: 3}
+  enemySprite: {fileID: 21300000, guid: 79de8e764ae10da40b7d130412e6c7f5, type: 3}
   health: 5
   damage: 2
   strength: 1
   dexterity: 1
   stamina: 1
+  abilities: []
   weaponAward: {fileID: 11400000, guid: 2a04e8bf7d4ad7d41a44949f07711098, type: 2}
