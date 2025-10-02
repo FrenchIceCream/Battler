@@ -85,7 +85,7 @@ public class Player : BaseCharacter
                 characterClasses.Add(characterClassSO.className, 1);
         }
 
-        healthComp.SetMaxHealth(healthComp.GetMaxHealth() + characterClassSO.healthForLevel);
+        healthComp.SetMaxHealth(healthComp.GetMaxHealth() + characterClassSO.healthForLevel + stats.Stamina);
         int value = characterClasses[characterClassSO.className];
         characterClassSO.abilities[value - 1].ActivateAbility(this);
 
