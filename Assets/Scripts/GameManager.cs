@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject deathScreenObject;
     [SerializeField] GameObject winScreenObject;
 
+    int enemiesSlain = 0;
+
     bool readyForNewBattle = false;
     Player player;
     Enemy enemy;
@@ -43,12 +45,13 @@ public class GameManager : MonoBehaviour
 
     private void Enemy_OnCharacterDied(object sender, System.EventArgs e)
     {
-        if (roundNumber >= 5)
+        if (enemiesSlain >= 5)
         {
             winScreenObject.SetActive(true);
         }
         else
         {
+            enemiesSlain++;
             weaponSelectionUI.SetWeaponOnCards(player.GetWeaponSO(), enemy.GetEnemySO().weaponAward);
             weaponSelectionUI.Show();
         }

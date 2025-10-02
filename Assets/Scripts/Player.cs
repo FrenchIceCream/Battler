@@ -45,7 +45,7 @@ public class Player : BaseCharacter
         base.Start();
     }
 
-    int GetOverallDamage(BaseCharacter opponent)
+    protected override int GetOverallDamage(BaseCharacter opponent)
     {
         int damageFromAbilities = 0;
         foreach (AbilitySO abilitySO in ApplyingDamageAbilities)
@@ -55,12 +55,7 @@ public class Player : BaseCharacter
         return weapon.GetDamage() + stats.Strength + damageFromAbilities;
     }
 
-    override protected void DoDamageToOpponent(BaseCharacter opponent)
-    {
-        opponent.AddHealth(-GetOverallDamage(opponent) + GetDamageTakenFromOpponent(opponent));
-    }
-
-    int GetDamageTakenFromOpponent(BaseCharacter opponent)
+    protected override int GetDamageTakenFromOpponent(BaseCharacter opponent)
     {
         int damageFromAbilities = 0;
         foreach (AbilitySO abilitySO in DamageTakenAbilities)
@@ -69,6 +64,7 @@ public class Player : BaseCharacter
         }
         return damageFromAbilities;
     }
+    
 
     public void AddCharacterClass(CharacterClassSO characterClassSO)
     {

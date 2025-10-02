@@ -1344,7 +1344,7 @@ MonoBehaviour:
   weaponSelectionUI: {fileID: 881373549}
   classSelectionUI: {fileID: 1576701995}
   deathScreenObject: {fileID: 1278708454}
-  winScreenObject: {fileID: 0}
+  winScreenObject: {fileID: 716480348}
 --- !u!1 &567256483
 GameObject:
   m_ObjectHideFlags: 0
@@ -3553,7 +3553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1576701991
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4778,7 +4778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2021421049
 RectTransform:
   m_ObjectHideFlags: 0

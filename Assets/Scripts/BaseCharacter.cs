@@ -97,9 +97,28 @@ public class BaseCharacter : MonoBehaviour, IAttack
         StartCoroutine(AttackCoroutine(opponent));
     }
 
+
+    protected virtual int GetDamageTakenFromOpponent(BaseCharacter opponent)
+    {
+        Debug.Log("GetDamageTakenFromOpponent - not overriden");
+        return 0;
+    }
+    protected virtual int GetOverallDamage(BaseCharacter opponent)
+    {
+        Debug.Log("GetOverallDamage = not overriden");
+        return 0;
+
+    }
     virtual protected void DoDamageToOpponent(BaseCharacter opponent)
     {
-        Debug.Log("Attacking (not overriden)");
+        int rand = UnityEngine.Random.Range(1, this.stats.Dexterity + opponent.stats.Dexterity + 1);
+        if (rand <= opponent.stats.Dexterity)
+        {
+
+            return;
+        }
+
+        opponent.AddHealth(-GetOverallDamage(opponent) + GetDamageTakenFromOpponent(opponent));
     }
 
     void Die()
