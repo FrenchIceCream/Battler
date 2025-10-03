@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] ClassSelectionUI classSelectionUI;
     [SerializeField] GameObject deathScreenObject;
     [SerializeField] GameObject winScreenObject;
+    [SerializeField] StatsPanelUI statsPanelUI;
+
 
     int enemiesSlain = 0;
 
@@ -45,16 +47,14 @@ public class GameManager : MonoBehaviour
 
     private void Enemy_OnCharacterDied(object sender, System.EventArgs e)
     {
+        enemiesSlain++;
         if (enemiesSlain >= 5)
         {
             winScreenObject.SetActive(true);
+            return;
         }
-        else
-        {
-            enemiesSlain++;
-            weaponSelectionUI.SetWeaponOnCards(player.GetWeaponSO(), enemy.GetEnemySO().weaponAward);
-            weaponSelectionUI.Show();
-        }
+        weaponSelectionUI.SetWeaponOnCards(player.GetWeaponSO(), enemy.GetEnemySO().weaponAward);
+        weaponSelectionUI.Show();
     }
 
     private void Player_OnCharacterDied(object sender, System.EventArgs e)
@@ -62,12 +62,17 @@ public class GameManager : MonoBehaviour
         deathScreenObject.SetActive(true);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         switch (attackState)
         { 
             case AttackState.Ready:
+                if (roundNumber == 1)
+                {
+                    statsPanelUI.Show();
+                    statsPanelUI.SetNewStats(player.GetMaxHealth(), player.GetStats().Strength, player.GetStats().Dexterity, player.GetStats().Stamina);
+                }
                 attackState = AttackState.Busy;
                 PerformAttack();
                 break;
@@ -108,7 +113,10 @@ public class GameManager : MonoBehaviour
     {
         if (player.GetPlayerLevel() < 3)
         {
-            classSelectionUI.SetCharacterClasses(() => { ResetBattle(); });
+            classSelectionUI.SetCharacterClasses(() => { 
+                ResetBattle();
+                statsPanelUI.SetNewStats(player.GetMaxHealth());
+            });
             classSelectionUI.Show();
         }
         else
@@ -121,7 +129,6 @@ public class GameManager : MonoBehaviour
 
     void ResetBattle()
     {
-        Debug.Log("Reset battle");
         player.ResetHealth();
         Destroy(this.enemy.gameObject);
 

@@ -7,19 +7,17 @@ using System.Collections.Generic;
 public class Player : BaseCharacter
 {
     [SerializeField] Weapon weapon;
-
-    public static Player Instance { get; private set; }
-
     [SerializeField] List<CharacterClassSO> possibleCharacterClasses;
     Dictionary<string, int> characterClasses;
 
+    public static Player Instance { get; private set; }
+
     public List<CharacterClassSO> GetPossibleCharacterClasses() { return possibleCharacterClasses; }
     public Dictionary<string, int> GetClassNamesAndLevels() { return characterClasses; }
-    
     public WeaponSO GetWeaponSO() { return weapon.GetWeaponSO(); }
     public void SetWeapon(WeaponSO weaponSO)    { weapon.SetWeapon(weaponSO); }
     public void ResetHealth()   { healthComp.ResetHealth(); }
-
+    public int GetMaxHealth() { return healthComp.GetMaxHealth(); }
 
     int playerLevel = 0;
     public int GetPlayerLevel() { return playerLevel; }
@@ -81,9 +79,9 @@ public class Player : BaseCharacter
                 characterClasses.Add(characterClassSO.className, 1);
         }
 
-        healthComp.SetMaxHealth(healthComp.GetMaxHealth() + characterClassSO.healthForLevel + stats.Stamina);
         int value = characterClasses[characterClassSO.className];
         characterClassSO.abilities[value - 1].ActivateAbility(this);
+        healthComp.SetMaxHealth(healthComp.GetMaxHealth() + characterClassSO.healthForLevel + stats.Stamina);
 
         playerLevel++;
     }
