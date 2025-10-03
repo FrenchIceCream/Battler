@@ -2,15 +2,36 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip backgroundMusic;
+    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip missSound;
+
+    public static AudioManager Instance;
+
+    private void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+            audioSource.playOnAwake = false;
+            audioSource.clip = backgroundMusic;
+            audioSource.Play();
+        }
+        else if (Instance == this)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayHitSoundOneShot()
     {
-        
+        audioSource.PlayOneShot(hitSound, Random.Range(1f, 2f));
+    }
+
+    public void PlayMissSoundOneShot()
+    {
+        audioSource.PlayOneShot(missSound, Random.Range(1f, 2f));
     }
 }

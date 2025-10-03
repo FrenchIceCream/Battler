@@ -114,17 +114,17 @@ public class BaseCharacter : MonoBehaviour, IAttack
         int rand = UnityEngine.Random.Range(1, this.stats.Dexterity + opponent.stats.Dexterity + 1);
         if (rand <= opponent.stats.Dexterity)
         {
-
+            AudioManager.Instance.PlayMissSoundOneShot();
             return;
         }
 
         opponent.AddHealth(-GetOverallDamage(opponent) + GetDamageTakenFromOpponent(opponent));
-    }
+        AudioManager.Instance.PlayHitSoundOneShot();
+}
 
     void Die()
     {
         OnCharacterDied?.Invoke(this, EventArgs.Empty);
-        StopAllCoroutines();
 
         GameManager.attackState = GameManager.AttackState.Paused;
     }
