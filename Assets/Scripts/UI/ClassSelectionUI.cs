@@ -26,6 +26,7 @@ public class ClassSelectionUI : MonoBehaviour
         foreach (CharacterClassSO characterClassSO in Player.Instance.GetPossibleCharacterClasses())
         {
             GameObject spawnedItem = Instantiate(classPanelSingle, this.transform);
+            spawnedItem.SetActive(true);
             ClassPanelSingleUI classPanelSingleUI = spawnedItem.GetComponent<ClassPanelSingleUI>();
             if (classesDict.ContainsKey(characterClassSO.className))
                 classPanelSingleUI.SetFromCharacterClassSO(characterClassSO, classesDict[characterClassSO.className] + 1);
@@ -39,9 +40,9 @@ public class ClassSelectionUI : MonoBehaviour
                 GameManager.attackState = GameManager.AttackState.Ready;
                 action?.Invoke();
             });
-
-            spawnedItem.SetActive(true);
         }
+
+        Show();
     }
 
     public void Show()

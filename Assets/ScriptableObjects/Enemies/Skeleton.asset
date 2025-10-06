@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1463813107589881321, guid: 72f22759a41bd2149be51865baf2a02f, type: 3}
-  enemySprite: {fileID: 21300000, guid: 7e06fd4d0cc80b04c91e171361b155d6, type: 3}
   health: 10
   damage: 2
   strength: 2

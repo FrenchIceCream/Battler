@@ -117,7 +117,6 @@ public class GameManager : MonoBehaviour
                 ResetBattle();
                 statsPanelUI.SetNewStats(player.GetMaxHealth());
             });
-            classSelectionUI.Show();
         }
         else
         {

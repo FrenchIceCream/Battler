@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Dragon
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1463813107589881321, guid: 7fd56fa8a062063489b4f241c7e8747f, type: 3}
-  enemySprite: {fileID: 21300000, guid: 3a3ff2e96a61ede43a498fe291b6d5ed, type: 3}
   health: 20
   damage: 4
   strength: 3

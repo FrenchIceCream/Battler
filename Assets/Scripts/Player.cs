@@ -31,16 +31,15 @@ public class Player : BaseCharacter
 
         if (Instance == null)
             Instance = this;
-
-        foreach (CharacterClassSO charClass in possibleCharacterClasses)
-        {
-            characterClasses.Add(charClass.name, 0);
-        }
     }
 
     override protected void Start()
     {
         base.Start();
+        foreach (CharacterClassSO charClass in possibleCharacterClasses)
+        {
+            characterClasses.Add(charClass.name, 0);
+        }
     }
 
     protected override int GetOverallDamage(BaseCharacter opponent)
@@ -63,7 +62,6 @@ public class Player : BaseCharacter
         return damageFromAbilities;
     }
     
-
     public void AddCharacterClass(CharacterClassSO characterClassSO)
     {
         if (playerLevel == 0)

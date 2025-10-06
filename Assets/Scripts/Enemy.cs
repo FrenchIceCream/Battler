@@ -12,15 +12,14 @@ public class Enemy : BaseCharacter
         GetStats().Dexterity = enemySO.dexterity;
         GetStats().Strength = enemySO.strength;
         GetStats().Stamina = enemySO.stamina;
-
-        foreach (AbilitySO abilitySO in enemySO.abilities)
-            abilitySO.ActivateAbility(this);
     }
 
     protected override void Start()
     {
+        base.Start();
+        foreach (AbilitySO abilitySO in enemySO.abilities)
+            abilitySO.ActivateAbility(this);
         healthComp.SetMaxHealth(enemySO.health);
-        healthComp.OnHealthChanged += HealthComp_OnHealthChanged;
     }
 
     protected override int GetOverallDamage(BaseCharacter opponent)

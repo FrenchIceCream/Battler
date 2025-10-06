@@ -27,7 +27,6 @@ public class BaseCharacter : MonoBehaviour, IAttack
         ApplyingDamageAbilities.Add(abilitySO);
     }
 
-
     public BaseStats GetStats()
     {
         return stats;
@@ -46,8 +45,6 @@ public class BaseCharacter : MonoBehaviour, IAttack
 
     protected void HealthComp_OnHealthChanged(object sender, HealthComponent.OnHealthChangedArgs e)
     {
-        //TODO visual updates
-
         if (e.newHealth == 0)
             Die();
     }

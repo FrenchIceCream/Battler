@@ -9,8 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: c51f0e39a847feb40b9d04debc29db17, type: 3}
   m_Name: RogueAbility2
   m_EditorClassIdentifier: Assembly-CSharp::RogueAbility2
-  abilityName: "\u041B\u043E\u0432\u043A\u043E\u0441\u0442\u044C +1 "
+  abilityName: "\u041B\u043E\u0432\u043A\u043E\u0441\u0442\u044C +1"
   abilityDescription: 
+  abilityInterface:
+    rid: 4228290855110705279
+  references:
+    version: 2
+    RefIds:
+    - rid: 4228290855110705279
+      type: {class: RogueAbility2, ns: , asm: Assembly-CSharp}
+      data: 

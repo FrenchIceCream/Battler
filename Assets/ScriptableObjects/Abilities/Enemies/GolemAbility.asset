@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: SkeletonAbility
-  m_EditorClassIdentifier: Assembly-CSharp::SkeletonAbility
+  m_Script: {fileID: 11500000, guid: c51f0e39a847feb40b9d04debc29db17, type: 3}
+  m_Name: GolemAbility
+  m_EditorClassIdentifier: Assembly-CSharp::GolemAbility
   abilityName: 
   abilityDescription: 

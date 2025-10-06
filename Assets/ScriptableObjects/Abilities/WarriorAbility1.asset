@@ -9,10 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: c51f0e39a847feb40b9d04debc29db17, type: 3}
   m_Name: WarriorAbility1
   m_EditorClassIdentifier: Assembly-CSharp::WarriorAbility1
   abilityName: "\u041F\u043E\u0440\u044B\u0432 \u043A \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044E"
   abilityDescription: "\u0412 \u043F\u0435\u0440\u0432\u044B\u0439 \u0445\u043E\u0434
     \u043D\u0430\u043D\u043E\u0441\u0438\u0442 \u0434\u0432\u043E\u0439\u043D\u043E\u0439
     \u0443\u0440\u043E\u043D \u043E\u0440\u0443\u0436\u0438\u0435\u043C"
+  abilityInterface:
+    rid: 4228290855110705281
+  references:
+    version: 2
+    RefIds:
+    - rid: 4228290855110705281
+      type: {class: WarriorAbility1, ns: , asm: Assembly-CSharp}
+      data: 
