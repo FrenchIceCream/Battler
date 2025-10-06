@@ -27,11 +27,13 @@ public class GameManager : MonoBehaviour
         Ready, Busy, Paused, FightFinished
     }
 
-    public static AttackState attackState = AttackState.Paused;
-    public static int roundNumber = 1;
+    public static AttackState attackState;
+    public static int roundNumber;
 
     void Start()
     {
+        roundNumber = 1;
+        attackState = AttackState.Paused;
         GameObject player = Instantiate(playerPrefab, new Vector3(-5, 0, 0), Quaternion.identity);
         int id = Random.Range(0, enemiesList.Count);
         GameObject enemy = Instantiate(enemiesList[id].enemyPrefab, new Vector3(5, 0, 0), Quaternion.identity);

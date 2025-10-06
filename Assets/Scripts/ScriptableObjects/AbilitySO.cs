@@ -9,7 +9,7 @@ public class AbilitySO : ScriptableObject
     public string abilityName;
     public string abilityDescription;
 
-    [SerializeField, SerializeReference]
+    [SerializeReference]
     IAbilityInterface abilityInterface;
 
     public void ActivateAbility(BaseCharacter character)
